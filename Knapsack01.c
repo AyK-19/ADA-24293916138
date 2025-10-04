@@ -1,10 +1,9 @@
 #include <stdio.h>
 #include <time.h>
-
+#include <stdlib.h>
 int max(int a, int b) {
     return (a > b) ? a : b;
 }
-
 int knapsack(int W, int wt[], int val[], int n) {
     int dp[n+1][W+1];
 
@@ -20,36 +19,25 @@ int knapsack(int W, int wt[], int val[], int n) {
     }
     return dp[n][W];
 }
-
 int main() {
     int n, W;
     printf("Enter number of items: ");
     scanf("%d", &n);
     int val[n], wt[n];
-    printf("Enter values of items:\n");
+    srand(time(NULL));
     for (int i = 0; i < n; i++) {
-        printf("Value of item %d: ", i+1);
-        scanf("%d", &val[i]);
+        val[i] = (rand() % 100) + 1;
+        wt[i] = (rand() % 50) + 1;
     }
-    printf("Enter weights of items:\n");
-    for (int i = 0; i < n; i++) {
-        printf("Weight of item %d: ", i+1);
-        scanf("%d", &wt[i]);
-    }
-    printf("Enter capacity of knapsack: ");
-    scanf("%d", &W);
-
+    W = n * 15;
+    printf("Generated knapsack capacity: %d\n", W);
     clock_t start, end;
     double cpu_time_used;
-
     start = clock();
     int result = knapsack(W, wt, val, n);
     end = clock();
-
     cpu_time_used = ((double) (end - start)) / CLOCKS_PER_SEC;
-
     printf("\nMaximum value in Knapsack = %d\n", result);
     printf("Time taken to execute: %f seconds\n", cpu_time_used);
-
     return 0;
 }
