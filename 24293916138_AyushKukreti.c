@@ -4,7 +4,7 @@ int fibo_iterative(int n)
 {
     if(n <= 1)
     {
-        return n;
+        return 0;
     }
     int a = 0,b = 1,c = 0;
     for(int i = 2;i <= n;i++)
@@ -28,7 +28,7 @@ int fibo_topdown_recursive(int a[],int n)
 {
     if(n<=1)
     {
-        return n;
+        return 0;
     }
     if(a[n]!=0)
     {
